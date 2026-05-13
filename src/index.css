@@ -266,6 +266,58 @@ button {
   }
 }
 
+/* Demo buttons in the Buttons section */
+.ds-demo-btn {
+  border: none;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.15s;
+}
+
+.ds-demo-btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+.ds-demo-btn-primary:hover {
+  background-color: #6b8878;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(126, 156, 140, 0.35);
+}
+
+.ds-demo-btn-secondary {
+  background-color: var(--color-text-main);
+  color: white;
+}
+.ds-demo-btn-secondary:hover {
+  background-color: #1e2326;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(47, 52, 55, 0.3);
+}
+
+.ds-demo-btn-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+.ds-demo-btn-outline:hover {
+  background-color: rgba(126, 156, 140, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(126, 156, 140, 0.2);
+}
+
+.ds-demo-btn-text {
+  background-color: transparent;
+  color: var(--color-text-light);
+  border: none;
+  text-decoration: underline;
+}
+.ds-demo-btn-text:hover {
+  color: var(--color-text-muted);
+}
+
 .ds-section {
   margin-bottom: var(--space-8);
   padding-top: var(--space-7); /* For scroll margin */

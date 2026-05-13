@@ -33,30 +33,37 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const skipObserverTimerRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // During smooth scroll, ratios flicker; observer can overwrite the clicked tab.
-        if (skipObserverRef.current) return;
-        // Find the first intersecting entry that is highly visible
-        const visibleEntries = entries.filter(entry => entry.isIntersecting);
-        if (visibleEntries.length > 0) {
-          // Sort by intersection ratio to find the most visible one
-          visibleEntries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-          setActiveSection(visibleEntries[0].target.id);
+    let rafId: number;
+
+    const update = () => {
+      if (skipObserverRef.current) return;
+      // Find the last section whose top edge is above the midpoint of the viewport.
+      // This means the section is occupying the top half of what the user sees.
+      const trigger = window.innerHeight * 0.4;
+      let activeId = SECTIONS[0].id;
+      for (const { id } of SECTIONS) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= trigger) {
+          activeId = id;
         }
-      },
-      {
-        rootMargin: '-100px 0px -40% 0px',
-        threshold: [0, 0.25, 0.5, 0.75, 1]
       }
-    );
+      setActiveSection(activeId);
+    };
 
-    SECTIONS.forEach(({ id }) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
+    const handleScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(update);
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Run after a short delay so fonts/layout have settled
+    setTimeout(update, 100);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {
@@ -79,7 +86,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
       skipObserverTimerRef.current = window.setTimeout(() => {
         skipObserverRef.current = false;
         skipObserverTimerRef.current = undefined;
-      }, 900);
+      }, 1500);
       
       // Close sidebar on mobile after clicking
       if (window.innerWidth <= 768) {

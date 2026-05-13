@@ -39,7 +39,10 @@ export const MiscSection = () => {
             </div>
             
             <div>
-              <div className="ds-label">Hover effects</div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 'var(--space-3)', flexWrap: 'wrap' }}>
+                <div className="ds-label">Hover effects</div>
+                <span style={{ fontSize: '0.75rem', color: 'var(--color-text-light)', fontStyle: 'italic' }}>mouse over to see effects</span>
+              </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
                 <div style={{ 
                   padding: 'var(--space-4)', 

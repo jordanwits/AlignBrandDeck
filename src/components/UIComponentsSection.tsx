@@ -9,51 +9,10 @@ export const UIComponentsSection: React.FC = () => {
         <div className="ds-surface">
           <div className="ds-label">Primary actions</div>
           <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', marginBottom: 'var(--space-6)' }}>
-            <button style={{
-              backgroundColor: 'var(--color-primary)',
-              color: 'white',
-              border: 'none',
-              padding: 'var(--space-3) var(--space-6)',
-              borderRadius: 'var(--radius-md)',
-              fontSize: '1.0625rem',
-              fontWeight: 500,
-              cursor: 'pointer',
-              transition: 'background-color 0.2s'
-            }}>Primary Button</button>
-            
-            <button style={{
-              backgroundColor: 'var(--color-text-main)',
-              color: 'white',
-              border: 'none',
-              padding: 'var(--space-3) var(--space-6)',
-              borderRadius: 'var(--radius-md)',
-              fontSize: '1.0625rem',
-              fontWeight: 500,
-              cursor: 'pointer'
-            }}>Secondary Action</button>
-            
-            <button style={{
-              backgroundColor: 'transparent',
-              color: 'var(--color-primary)',
-              border: '1px solid var(--color-primary)',
-              padding: 'var(--space-3) var(--space-6)',
-              borderRadius: 'var(--radius-md)',
-              fontSize: '1.0625rem',
-              fontWeight: 500,
-              cursor: 'pointer'
-            }}>Outline Button</button>
-            
-            <button style={{
-              backgroundColor: 'transparent',
-              color: 'var(--color-text-light)',
-              border: 'none',
-              padding: 'var(--space-3) var(--space-6)',
-              borderRadius: 'var(--radius-md)',
-              fontSize: '1.0625rem',
-              fontWeight: 500,
-              cursor: 'pointer',
-              textDecoration: 'underline'
-            }}>Text Link</button>
+            <button className="ds-demo-btn ds-demo-btn-primary">Primary Button</button>
+            <button className="ds-demo-btn ds-demo-btn-secondary">Secondary Action</button>
+            <button className="ds-demo-btn ds-demo-btn-outline">Outline Button</button>
+            <button className="ds-demo-btn ds-demo-btn-text">Text Link</button>
           </div>
         </div>
     </div>
